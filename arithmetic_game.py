@@ -11,6 +11,12 @@
 ###
 ###
 
+
+# updates:
+#         change to class structure for easier implementation
+#         leaderboard
+###
+
 import random
 import time 
 def arithmetic(level):
@@ -40,7 +46,7 @@ def arithmetic(level):
             if play_again=='y':
                 for i in range(15):
                     print("#"*20)
-                    
+
                 time.sleep(1)
                 return arithmetic(1)
             return
@@ -85,7 +91,7 @@ def arithmetic(level):
         # Prompts player for answer input
         ###
         ###        
-        answer=input()  #  need to implement error catching for when input includes a character that is not an interger like "("
+        answer=input()  
         while not answer.isdigit():
             print('Invalid answer, try again!')
             print('#'*20)
