@@ -3,7 +3,7 @@
 # Game Instructions
 ###
 ###
-# 1. Run game in terminal (fun on airplane flights).
+# 1. Run game in terminal (great for airplane flights or when you don't have wifi).
 # 2. Arithmetic problem will appear. Answer correctly for new question to appear.
 # 3. If all questions on current level answered within time limit (60 seconds), you will move on to the next level.
 # 4. Incorrect answers results in a 5 second time penalty.
@@ -13,7 +13,6 @@
 
 import random
 import time 
-
 def arithmetic(level):
     print("You are on Level " + str(level))
     print("#"*20)
@@ -33,7 +32,19 @@ def arithmetic(level):
             time.sleep(1)
             print("You made it to level " + str(level) + " and answered " + str(problem-1) + "/" + str(level*3) + " problems")
             print("#"*20)
+            print('Would you like to play again? Press y for yes, and n for no')
+            play_again=input()
+            while play_again not in ['n','y']:
+                print('Invalid Response')
+                play_again=input()
+            if play_again=='y':
+                for i in range(15):
+                    print("#"*20)
+                    
+                time.sleep(1)
+                return arithmetic(1)
             return
+        
         operations=['*','+','-', '/']
         random_operation=random.randint(0,3)
         x=random.randint(2,99)
@@ -74,7 +85,12 @@ def arithmetic(level):
         # Prompts player for answer input
         ###
         ###        
-        answer=int(input())  #  need to implement error catching for when input includes a character that is not an interger like "("
+        answer=input()  #  need to implement error catching for when input includes a character that is not an interger like "("
+        while not answer.isdigit():
+            print('Invalid answer, try again!')
+            print('#'*20)
+            answer=input()
+        answer=int(answer)
         ###
         ###
         ###
@@ -82,7 +98,12 @@ def arithmetic(level):
         while answer!=correct_answer:
             print("Wrong answer, try again!")
             print('#'*20)
-            answer=int(input())  # repeatedly prompts player for answer until correct
+            answer=input()  # repeatedly prompts player for answer until correct
+            while not answer.isdigit():
+                print('Invalid answer, try again!') 
+                print("#" *20)              
+                answer=input()
+            answer=int(answer)
             mistakes+=1
             start_time-=5  # time penalty for wrong answer
             if time.time()-start_time>60:  # 1 minute time limit per level
@@ -94,7 +115,19 @@ def arithmetic(level):
                 time.sleep(1)
                 print("You made it to level " + str(level) + " and answered " + str(problem-1) + "/" + str(level*3) + " problems")
                 print('#'*20)
+                print('Would you like to play again? Press y for yes, and n for no')
+                play_again=input()
+                while play_again not in ['n','y']:
+                    print('Invalid Response')
+                    play_again=input()
+                if play_again=='y':
+                    for i in range(15):
+                        print("#"*20)
+
+                    time.sleep(1)
+                    return arithmetic(1)
                 return
+            
         print("Correct!")
         print('#'*20)
     
@@ -120,6 +153,19 @@ def arithmetic(level):
     time.sleep(1)
     print("You made it to level " + str(level) + " and answered " + str(problem-1) + "/" + str(level*3) + " problems")
     print('#'*20)
+
+    print('Would you like to play again? Press y for yes, and n for no')
+    play_again=input()
+    while play_again not in ['n','y']:
+        print('Invalid Response')
+        play_again=input()
+    if play_again=='y':
+        for i in range(15):
+            print("#"*20)
+
+        time.sleep(1)
+        return arithmetic(1)
     return
+    
 
 arithmetic(1)
